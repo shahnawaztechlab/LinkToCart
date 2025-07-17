@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Community | LinkToCart</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        background-color: #f6f6f6;
+        color: #222;
+        line-height: 1.6;
+      }
+
+      section {
+        padding: 60px 20px;
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      h2.section-title {
+        font-size: 32px;
+        margin-bottom: 30px;
+        text-align: center;
+        color: #28447e;
+      }
+
+      .top-members,
+      .reviews,
+      .gallery,
+      .events,
+      .join-community {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: center;
+      }
+
+      .memberCard {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+        width: 280px;
+        text-align: center;
+      }
+
+      .memberCard img {
+        width: 80px;
+        border-radius: 50%;
+        margin-bottom: 15px;
+      }
+
+      .review-card {
+        background-color: white;
+        padding: 20px;
+        border-left: 5px solid #28447e;
+        border-radius: 10px;
+        width: 300px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .gallery img {
+        width: 250px;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+
+      .event-card {
+        background-color: #fff;
+        padding: 20px;
+        border: 2px dashed #28447e;
+        border-radius: 10px;
+        width: 300px;
+        text-align: center;
+      }
+
+      .join-community form {
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 600px;
+        margin: auto;
+      }
+
+      .join-community input,
+      .join-community textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .join-community button {
+        background-color: #28447e;
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      @media (max-width: 768px) {
+        .card,
+        .review-card,
+        .event-card {
+          width: 90%;
+        }
+
+        .gallery img {
+          width: 90%;
+          height: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- header-section -->
+    <header class="navbar">
+      <div class="logo">
+        <p>LinkToCart</p>
+      </div>
+      <nav class="nav-links" id="nav-links">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="women.html">Woman</a></li>
+          <li><a href="man.html">Man</a></li>
+          <li><a href="youth.html">Youth</a></li>
+          <li><a href="community.html">Community</a></li>
+          <li><a href="contact.html">Contact US</a></li>
+        </ul>
+      </nav>
+
+      <div class="search-cart-user">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" placeholder="Search" />
+        <i class="fas fa-shopping-bag"></i>
+        <i class="fas fa-user" onclick="openPopup()"></i>
+      </div>
+
+      <div class="menu-toggle" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </header>
+
+    <!-- Top Members -->
+    <section>
+      <h2 class="section-title">🌟 Top Community Members</h2>
+      <div class="top-members">
+        <div class="memberCard">
+          <img src="https://i.pravatar.cc/100?img=11" />
+          <h3>Sarah Ali</h3>
+          <p class="paragraph">Style Influencer | Member since 2022</p>
+        </div>
+        <div class="memberCard">
+          <img src="https://i.pravatar.cc/100?img=15" />
+          <h3>Owais Khan</h3>
+          <p class="paragraph">Top Reviewer | 100+ Reviews</p>
+        </div>
+        <div class="memberCard">
+          <img src="https://i.pravatar.cc/100?img=24" />
+          <h3>Maria James</h3>
+          <p class="paragraph">Verified Buyer | 57 Orders</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Customer Reviews -->
+    <section>
+      <h2 class="section-title">💬 What Our Users Say</h2>
+      <div class="reviews">
+        <div class="review-card">
+          <p><strong>"Amazing quality!"</strong></p>
+          <p>
+            I ordered a leather jacket and it fits perfectly. Shipping was fast
+            and the support team was very responsive.
+          </p>
+          <p><i>- Hassan R.</i></p>
+        </div>
+        <div class="review-card">
+          <p><strong>"Stylish & Comfortable"</strong></p>
+          <p>
+            I bought youth sneakers from here and they’re super comfy. Totally
+            worth the price!
+          </p>
+          <p><i>- Mehak A.</i></p>
+        </div>
+        <div class="review-card">
+          <p><strong>"Will shop again!"</strong></p>
+          <p>
+            Great products and excellent customer care. I’ve already recommended
+            LinkToCart to my friends!
+          </p>
+          <p><i>- Danish T.</i></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section>
+      <h2 class="section-title">📸 Shared by Our Community</h2>
+      <div class="gallery">
+        <img src="assest/Community1.jpg" alt="Gallery1" />
+        <img src="assest/Community2.jpg" alt="Gallery2" />
+        <img src="assest/Community3.jpg" alt="Gallery3" />
+        <img src="assest/Community4.jpg" alt="Gallery4" />
+      </div>
+    </section>
+
+    <!-- Events / Offers -->
+    <section>
+      <h2 class="section-title">🎉 Current Contests & Offers</h2>
+      <div class="events">
+        <div class="event-card">
+          <h3>#StyleStar Challenge</h3>
+          <p>Post your outfit with #LinkToCartStyle and win gift hampers!</p>
+        </div>
+        <div class="event-card">
+          <h3>Refer & Earn</h3>
+          <p>Invite friends and earn up to $50 credit on their first order.</p>
+        </div>
+        <div class="event-card">
+          <h3>July Giveaway 🎁</h3>
+          <p>Stand a chance to win Apple AirPods. Ends July 30!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Join Community -->
+    <section>
+      <h2 class="section-title">🤝 Join Our Community</h2>
+      <div class="join-community">
+        <form>
+          <input type="text" placeholder="Full Name" required />
+          <input type="email" placeholder="Email Address" required />
+          <textarea
+            placeholder="Tell us what you're excited about!"
+            rows="4"
+          ></textarea>
+          <button type="submit">Join Now</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- footer-section -->
+    <footer class="footer">
+      <div class="footer-container">
+        <!-- Navigation -->
+        <div class="footer-section">
+          <h3>Explore</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="women.html">Women</a></li>
+            <li><a href="man.html">Man</a></li>
+            <li><a href="youth.html">Youth</a></li>
+            <li><a href="community.html">Community</a></li>
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div class="footer-section">
+          <h3>Support</h3>
+          <ul>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li>
+              <a href="#"
+                ><abbr title="feedback not found at the time">Feedback</abbr></a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><abbr title="Policy have not published"
+                  >Terms & Policy</abbr
+                ></a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Social Media -->
+        <div class="footer-section">
+          <h3>Follow Us</h3>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/"
+              ><i class="fab fa-facebook"></i
+            ></a>
+            <a href="https://www.instagram.com/"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="https://www.twitter.com/"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a href="https://www.youtube.com/"
+              ><i class="fab fa-youtube"></i
+            ></a>
+          </div>
+        </div>
+
+        <!-- QR Code -->
+        <div class="footer-section qr">
+          <h3>Scan & Connect</h3>
+          <img
+            src="https://api.qrserver.com/v1/create-qr-code/?data=https://yourwebsite.com&size=120x120"
+            alt="QR Code"
+          />
+          <p>Scan to visit our website</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 CodeWithShahnawaz. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- signin/login -->
+    <!-- Popup Form -->
+    <div class="popup" id="popupForm">
+      <span class="close-btn" onclick="closePopup()">&times;</span>
+      <h2 id="formTitle">Welcome In</h2>
+
+      <!-- Signup Form -->
+      <form id="signupForm">
+        <label for="text"> Full name</label>
+        <input type="text" placeholder="Full Name" required />
+        <br />
+        <label for="email"> Email</label>
+        <input type="email" placeholder="Email" required />
+        <br />
+        <label for="tel"> Phone number</label>
+        <input type="tel" placeholder="Phone Number" required />
+        <br />
+        <label for="password"> Password</label>
+        <input type="password" placeholder="Password" required />
+        <br />
+        <label for="password"> Confirm Password</label>
+        <input type="password" placeholder="Confirm Password" required />
+        <br />
+        <button type="submit">Sign Up</button>
+        <div class="toggle-link">
+          Already have an account? <a onclick="toggleForm('login')">Sign in</a>
+        </div>
+      </form>
+
+      <!-- Login Form -->
+      <form id="loginForm" style="display: none">
+        <label for="text">Email/username</label>
+        <input type="text" placeholder="Email or Username" required />
+        <br />
+        <label for="password">Password</label>
+        <input type="password" placeholder="Password" required />
+        <br />
+        <button type="submit">Login</button>
+        <div class="toggle-link">
+          Don't have an account? <a onclick="toggleForm('signup')">Sign up</a>
+        </div>
+      </form>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

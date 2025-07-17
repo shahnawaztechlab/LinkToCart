@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Women Products</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .banner {
+        max-width: 1024px;
+        width: 100%;
+        margin: 10px auto;
+        text-align: center;
+      }
+
+      .banner img {
+        width: 100%;
+      }
+
+      #productContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .product {
+        /* background-color: aqua; */
+        padding: 10px;
+        text-align: center;
+        border-radius: 10px;
+        width: 300px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Only shadow */
+        transition: 0.3s;
+      }
+
+      .product:hover {
+        box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
+        transform: translateY(-5px);
+      }
+
+      #pagination,
+      #productContainer {
+        margin-bottom: 20px;
+      }
+
+      .product img {
+        width: 100%;
+        height: 300px;
+        margin-bottom: 10px;
+      }
+
+      #pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .btn {
+        width: 100px;
+        height: 30px;
+        border-radius: 20px;
+        background-color: #28447e;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        background-color: #36589b;
+        transition: 0.3s all ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- header-section -->
+    <header class="navbar">
+      <div class="logo">
+        <p>LinkToCart</p>
+      </div>
+      <nav class="nav-links" id="nav-links">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="women.html">Woman</a></li>
+          <li><a href="man.html">Man</a></li>
+          <li><a href="youth.html">Youth</a></li>
+          <li><a href="community.html">Community</a></li>
+          <li><a href="contact.html">Contact US</a></li>
+        </ul>
+      </nav>
+
+      <div class="search-cart-user">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" placeholder="Search" />
+        <i class="fas fa-shopping-bag"></i>
+        <i class="fas fa-user" onclick="openPopup()"></i>
+      </div>
+
+      <div class="menu-toggle" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </header>
+
+    <!-- banner -->
+    <div class="banner">
+      <img src="assest/bannerwomen.jpg" alt="mansbanner" />
+    </div>
+
+    <div id="productContainer"></div>
+    <div id="pagination">
+      <button class="btn" onclick="loadMore()">load more</button>
+    </div>
+    <script>
+      const womenProducts = [
+        {
+          id: 1,
+          name: "Crop Top",
+          price: "$25",
+          desc: "A trendy crop top made with soft cotton fabric.\nIdeal for casual outings or beach days.\nAvailable in vibrant summer colors.\nPairs perfectly with high-waisted jeans or skirts.",
+          img: "assest/women/1.jpg",
+          rating: "★★★★☆ 4.3",
+          sold: "Sold: 120",
+          stock: "Stock: 30",
+        },
+        {
+          id: 2,
+          name: "Peplum Top",
+          price: "$30",
+          desc: "Stylish peplum top with a flared hem.\nElegant and flattering fit for all body types.\nGreat for parties or semi-formal events.\nAvailable in soft pastel tones.",
+          img: "assest/women/2.jpg",
+          rating: "★★★★☆ 4.2",
+          sold: "Sold: 95",
+          stock: "Stock: 25",
+        },
+        {
+          id: 3,
+          name: "Tank Top",
+          price: "$18",
+          desc: "Lightweight, breathable tank top for daily wear.\nPerfect for summer, yoga, or layering.\nSoft stretchable fabric ensures comfort.\nAvailable in multiple sizes and shades.",
+          img: "assest/women/3.jpg",
+          rating: "★★★★☆ 4.0",
+          sold: "Sold: 150",
+          stock: "Stock: 50",
+        },
+        {
+          id: 4,
+          name: "Blouse",
+          price: "$28",
+          desc: "Elegant blouse made from premium chiffon.\nGreat for office, dinners, and evening events.\nButtoned and collared design adds grace.\nComes in floral and plain designs.",
+          img: "assest/women/4.jpg",
+          rating: "★★★★★ 4.6",
+          sold: "Sold: 130",
+          stock: "Stock: 35",
+        },
+        {
+          id: 5,
+          name: "Tunic",
+          price: "$35",
+          desc: "Comfortable tunic top with ethnic flair.\nPerfect for daily wear or relaxed gatherings.\nMade with breathable rayon fabric.\nGoes well with leggings or jeggings.",
+          img: "assest/women/5.jpg",
+          rating: "★★★★☆ 4.1",
+          sold: "Sold: 90",
+          stock: "Stock: 40",
+        },
+        {
+          id: 6,
+          name: "Wrap Dress",
+          price: "$45",
+          desc: "Stylish wrap-around dress with a flattering fit.\nPerfect for brunch, dates, or summer evenings.\nTied at the waist for adjustable comfort.\nLight floral prints enhance its charm.",
+          img: "assest/women/6.jpg",
+          rating: "★★★★☆ 4.4",
+          sold: "Sold: 110",
+          stock: "Stock: 20",
+        },
+        {
+          id: 7,
+          name: "Skater Dress",
+          price: "$38",
+          desc: "Fun and flirty skater dress with a flowy bottom.\nDesigned to fit snug at the top and flare out.\nPerfect for casual and semi-formal occasions.\nComfortable and chic.",
+          img: "assest/women/7.jpg",
+          rating: "★★★★☆ 4.2",
+          sold: "Sold: 100",
+          stock: "Stock: 28",
+        },
+        {
+          id: 8,
+          name: "Maxi Dress",
+          price: "$50",
+          desc: "Elegant floor-length dress for formal occasions.\nMade with soft, flowing fabric.\nSuitable for evening events and weddings.\nComes in bold and pastel colors.",
+          img: "assest/women/8.jpg",
+          rating: "★★★★★ 4.5",
+          sold: "Sold: 85",
+          stock: "Stock: 18",
+        },
+        {
+          id: 9,
+          name: "Bodycon Dress",
+          price: "$42",
+          desc: "Tight-fitting dress that accentuates curves.\nPerfect for parties and night outs.\nStretchy material provides a snug fit.\nAvailable in black, red, and navy.",
+          img: "assest/women/9.jpg",
+          rating: "★★★★☆ 4.3",
+          sold: "Sold: 102",
+          stock: "Stock: 22",
+        },
+        {
+          id: 10,
+          name: "Off-Shoulder Top",
+          price: "$26",
+          desc: "Trendy off-shoulder design with frilled sleeves.\nGives a breezy and feminine look.\nIdeal for warm days and outdoor events.\nPairs beautifully with skirts or jeans.",
+          img: "assest/women/10.jpg",
+          rating: "★★★★☆ 4.1",
+          sold: "Sold: 115",
+          stock: "Stock: 30",
+        },
+        {
+          id: 11,
+          name: "Skinny Jeans",
+          price: "$40",
+          desc: "Classic skinny jeans with stretch comfort.\nTapered fit from waist to ankle.\nPerfect for everyday wear and parties.\nComes in dark and faded washes.",
+          img: "assest/women/11.jpg",
+          rating: "★★★★☆ 4.3",
+          sold: "Sold: 140",
+          stock: "Stock: 40",
+        },
+        {
+          id: 12,
+          name: "Palazzo Pants",
+          price: "$32",
+          desc: "High-waisted palazzo with wide-leg design.\nSuper comfortable and stylish.\nGreat for work, travel, or lounging.\nAvailable in solids and floral prints.",
+          img: "assest/women/12.jpg",
+          rating: "★★★★☆ 4.2",
+          sold: "Sold: 125",
+          stock: "Stock: 38",
+        },
+        {
+          id: 13,
+          name: "Culottes",
+          price: "$30",
+          desc: "Trendy culottes with cropped flare fit.\nLoose-fitting and breathable.\nPerfect for summer outings or casual work wear.\nPairs well with tank tops and tees.",
+          img: "assest/women/13.jpg",
+          rating: "★★★★☆ 4.0",
+          sold: "Sold: 88",
+          stock: "Stock: 26",
+        },
+        {
+          id: 14,
+          name: "A-Line Skirt",
+          price: "$28",
+          desc: "Stylish skirt with a flattering A-line shape.\nIdeal for both casual and office looks.\nAvailable in denim, cotton, and silk.\nComfortable waist fit.",
+          img: "assest/women/14.jpg",
+          rating: "★★★★☆ 4.2",
+          sold: "Sold: 95",
+          stock: "Stock: 33",
+        },
+        {
+          id: 15,
+          name: "High-Waisted Shorts",
+          price: "$22",
+          desc: "Chic high-rise shorts with rolled hem.\nPerfect for summer vacations or casual wear.\nMade with soft stretchable denim.\nPairs with any top easily.",
+          img: "assest/women/15.jpg",
+          rating: "★★★★☆ 4.1",
+          sold: "Sold: 105",
+          stock: "Stock: 29",
+        },
+        {
+          id: 16,
+          name: "Jumpsuit",
+          price: "$48",
+          desc: "One-piece outfit with sleek silhouette.\nSuitable for both casual and semi-formal occasions.\nTie-waist detail enhances fit.\nComes in full and half sleeve styles.",
+          img: "assest/women/16.jpg",
+          rating: "★★★★☆ 4.4",
+          sold: "Sold: 97",
+          stock: "Stock: 20",
+        },
+        {
+          id: 17,
+          name: "Kurti",
+          price: "$27",
+          desc: "Traditional Indian tunic for everyday wear.\nMade from soft cotton or rayon.\nComes in floral, printed, and embroidered styles.\nPerfect with leggings or jeans.",
+          img: "assest/women/17.jpg",
+          rating: "★★★★☆ 4.3",
+          sold: "Sold: 135",
+          stock: "Stock: 45",
+        },
+        {
+          id: 18,
+          name: "Lehenga Choli",
+          price: "$75",
+          desc: "Traditional festive wear with skirt and blouse.\nRich embroidery and zari work.\nPerfect for weddings and cultural events.\nIncludes dupatta (scarf).",
+          img: "assest/women/18.jpg",
+          rating: "★★★★★ 4.6",
+          sold: "Sold: 70",
+          stock: "Stock: 10",
+        },
+        {
+          id: 19,
+          name: "Anarkali Suit",
+          price: "$65",
+          desc: "Flowy, floor-length ethnic dress.\nComes with churidar pants and dupatta.\nPopular for parties and festivals.\nElegant embroidery with flare cut.",
+          img: "assest/women/19.jpg",
+          rating: "★★★★★ 4.5",
+          sold: "Sold: 78",
+          stock: "Stock: 18",
+        },
+        {
+          id: 20,
+          name: "Saree",
+          price: "$55",
+          desc: "Graceful 6-yard drape traditional Indian wear.\nComes with blouse piece and matching pallu.\nSuitable for formal events and cultural days.\nAvailable in silk, chiffon, georgette.",
+          img: "assest/women/20.jpg",
+          rating: "★★★★★ 4.7",
+          sold: "Sold: 90",
+          stock: "Stock: 15",
+        },
+      ];
+      let currentIndex = 0;
+      const perPage = 8;
+      const four = 4;
+
+      function loadMore() {
+        const container = document.getElementById("productContainer");
+
+        for (
+          let i = currentIndex;
+          i < currentIndex + perPage && i < womenProducts.length;
+          i++
+        ) {
+          const p = womenProducts[i];
+          const div = document.createElement("div");
+          div.className = "product";
+          div.innerHTML = `
+          <img src="${p.img}" alt="${p.name}" />
+          <h3>${p.name}</h3>
+          <p>${p.price}</p>
+          <button class="btn" onclick="buyNow(${p.id})">Buy Now</button>
+        `;
+          container.appendChild(div);
+        }
+
+        currentIndex += perPage;
+        if (currentIndex >= womenProducts.length) {
+          document.getElementById("pagination").style.display = "none";
+        }
+      }
+
+      function buyNow(id) {
+        const product = womenProducts.find((p) => p.id === id);
+        localStorage.setItem("selectedProduct", JSON.stringify(product));
+        window.location.href = "addToCart.html";
+      }
+
+      loadMore(); // Load first 5 on load
+    </script>
+
+    <!-- footer-section -->
+    <footer class="footer">
+      <div class="footer-container">
+        <!-- Navigation -->
+        <div class="footer-section">
+          <h3>Explore</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="women.html">Women</a></li>
+            <li><a href="man.html">Man</a></li>
+            <li><a href="youth.html">Youth</a></li>
+            <li><a href="community.html">Community</a></li>
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div class="footer-section">
+          <h3>Support</h3>
+          <ul>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li>
+              <a href="#"
+                ><abbr title="feedback not found at the time">Feedback</abbr></a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><abbr title="Policy have not published"
+                  >Terms & Policy</abbr
+                ></a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Social Media -->
+        <div class="footer-section">
+          <h3>Follow Us</h3>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/"
+              ><i class="fab fa-facebook"></i
+            ></a>
+            <a href="https://www.instagram.com/"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="https://www.twitter.com/"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a href="https://www.youtube.com/"
+              ><i class="fab fa-youtube"></i
+            ></a>
+          </div>
+        </div>
+
+        <!-- QR Code -->
+        <div class="footer-section qr">
+          <h3>Scan & Connect</h3>
+          <img
+            src="https://api.qrserver.com/v1/create-qr-code/?data=https://yourwebsite.com&size=120x120"
+            alt="QR Code"
+          />
+          <p>Scan to visit our website</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 CodeWithShahnawaz. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- signin/login -->
+    <!-- Popup Form -->
+    <div class="popup" id="popupForm">
+      <span class="close-btn" onclick="closePopup()">&times;</span>
+      <h2 id="formTitle">Welcome In</h2>
+
+      <!-- Signup Form -->
+      <form id="signupForm">
+        <label for="text"> Full name</label>
+        <input type="text" placeholder="Full Name" required />
+        <br />
+        <label for="email"> Email</label>
+        <input type="email" placeholder="Email" required />
+        <br />
+        <label for="tel"> Phone number</label>
+        <input type="tel" placeholder="Phone Number" required />
+        <br />
+        <label for="password"> Password</label>
+        <input type="password" placeholder="Password" required />
+        <br />
+        <label for="password"> Confirm Password</label>
+        <input type="password" placeholder="Confirm Password" required />
+        <br />
+        <button type="submit">Sign Up</button>
+        <div class="toggle-link">
+          Already have an account? <a onclick="toggleForm('login')">Sign in</a>
+        </div>
+      </form>
+
+      <!-- Login Form -->
+      <form id="loginForm" style="display: none">
+        <label for="text">Email/username</label>
+        <input type="text" placeholder="Email or Username" required />
+        <br />
+        <label for="password">Password</label>
+        <input type="password" placeholder="Password" required />
+        <br />
+        <button type="submit">Login</button>
+        <div class="toggle-link">
+          Don't have an account? <a onclick="toggleForm('signup')">Sign up</a>
+        </div>
+      </form>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

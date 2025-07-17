@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Youth Products</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .banner {
+        max-width: 1024px;
+        width: 100%;
+        margin: 10px auto;
+        text-align: center;
+      }
+
+      .banner img {
+        width: 100%;
+        height: 400px;
+      }
+
+      #productContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .product {
+        /* background-color: aqua; */
+        padding: 10px;
+        text-align: center;
+        border-radius: 10px;
+        width: 300px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Only shadow */
+        transition: 0.3s;
+      }
+
+      .product:hover {
+        box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
+        transform: translateY(-5px);
+      }
+
+      #pagination,
+      #productContainer {
+        margin-bottom: 20px;
+      }
+
+      .product img {
+        width: 100%;
+        height: 300px;
+        margin-bottom: 10px;
+      }
+
+      #pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .btn {
+        width: 100px;
+        height: 30px;
+        border-radius: 20px;
+        background-color: #28447e;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        background-color: #36589b;
+        transition: 0.3s all ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- header-section -->
+    <header class="navbar">
+      <div class="logo">
+        <p>LinkToCart</p>
+      </div>
+      <nav class="nav-links" id="nav-links">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="women.html">Woman</a></li>
+          <li><a href="man.html">Man</a></li>
+          <li><a href="youth.html">Youth</a></li>
+          <li><a href="community.html">Community</a></li>
+          <li><a href="contact.html">Contact US</a></li>
+        </ul>
+      </nav>
+
+      <div class="search-cart-user">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" placeholder="Search" />
+        <i class="fas fa-shopping-bag"></i>
+        <i class="fas fa-user" onclick="openPopup()"></i>
+      </div>
+
+      <div class="menu-toggle" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </header>
+
+    <!-- banner -->
+    <div class="banner">
+      <img src="assest/youthbanner.jpg" alt="mansbanner" />
+    </div>
+
+    <div id="productContainer"></div>
+    <div id="pagination">
+      <button class="btn" onclick="loadMore()">load more</button>
+    </div>
+    <script>
+      const youthProducts = [
+        {
+          id: 1,
+          name: "Graphic Hoodie",
+          price: "$35",
+          desc: "Trendy oversized hoodie with bold graphic print.\nPerfect for cool evenings and campus life.\nSoft fleece lining for warmth.\nUnisex and available in various colors.",
+          img: "assest/youth/1.jfif",
+          rating: "★★★★☆ 4.5",
+          sold: "Sold: 210",
+          stock: "Stock: 40",
+        },
+        {
+          id: 2,
+          name: "Denim Jacket",
+          price: "$48",
+          desc: "Classic washed denim with modern fit.\nIdeal for layering over t-shirts.\nStreetwear essential for any teen wardrobe.\nDurable and stylish.",
+          img: "assest/youth/2.jfif",
+          rating: "★★★★☆ 4.4",
+          sold: "Sold: 180",
+          stock: "Stock: 25",
+        },
+        {
+          id: 3,
+          name: "Cargo Joggers",
+          price: "$32",
+          desc: "Comfortable joggers with utility pockets.\nBest for casual hangouts or gym sessions.\nElastic waist and tapered ankles.\nPairs well with hoodies and tees.",
+          img: "assest/youth/3.jfif",
+          rating: "★★★★☆ 4.2",
+          sold: "Sold: 165",
+          stock: "Stock: 38",
+        },
+        {
+          id: 4,
+          name: "Varsity Jacket",
+          price: "$55",
+          desc: "Retro-inspired varsity jacket with patches.\nPerfect for school or fall season.\nButton-up front with ribbed collar.\nA trendy, sporty vibe.",
+          img: "assest/youth/4.jfif",
+          rating: "★★★★★ 4.6",
+          sold: "Sold: 140",
+          stock: "Stock: 20",
+        },
+        {
+          id: 5,
+          name: "Oversized T-Shirt",
+          price: "$20",
+          desc: "Loose-fit cotton t-shirt with minimal print.\nGreat for street-style looks.\nBreathable and soft material.\nUnisex fit and youth favorite.",
+          img: "assest/youth/5.jfif",
+          rating: "★★★★☆ 4.3",
+          sold: "Sold: 195",
+          stock: "Stock: 50",
+        },
+        {
+          id: 6,
+          name: "Track Suit",
+          price: "$60",
+          desc: "Matching hoodie and jogger set.\nSporty look with maximum comfort.\nIdeal for gym, sports, or casual wear.\nLightweight and flexible fabric.",
+          img: "assest/youth/6.jfif",
+          rating: "★★★★☆ 4.4",
+          sold: "Sold: 125",
+          stock: "Stock: 32",
+        },
+        {
+          id: 7,
+          name: "Flannel Shirt",
+          price: "$28",
+          desc: "Checkered flannel for a classic youth vibe.\nCan be worn open or buttoned.\nSoft cotton blend keeps you warm.\nAvailable in red, blue, and green.",
+          img: "assest/youth/7.jfif",
+          rating: "★★★★☆ 4.2",
+          sold: "Sold: 98",
+          stock: "Stock: 27",
+        },
+        {
+          id: 8,
+          name: "Streetwear Shorts",
+          price: "$24",
+          desc: "Urban-style shorts with cool prints.\nLightweight and breathable material.\nSide zippers and elastic waistband.\nGreat for summer.",
+          img: "assest/youth/8.jfif",
+          rating: "★★★★☆ 4.1",
+          sold: "Sold: 110",
+          stock: "Stock: 30",
+        },
+        {
+          id: 9,
+          name: "Layered Hoodie Tee",
+          price: "$30",
+          desc: "Stylish t-shirt with hoodie combo.\nLayered look without extra bulk.\nPerfect for casual streetwear.\nSoft and stretchy fabric.",
+          img: "assest/youth/9.jfif",
+          rating: "★★★★☆ 4.3",
+          sold: "Sold: 107",
+          stock: "Stock: 22",
+        },
+        {
+          id: 10,
+          name: "Printed Sweatshirt",
+          price: "$38",
+          desc: "Bold typography or anime designs.\nCozy fleece lining keeps you warm.\nPerfect for everyday youth fashion.\nMachine washable and durable.",
+          img: "assest/youth/10.jfif",
+          rating: "★★★★☆ 4.4",
+          sold: "Sold: 125",
+          stock: "Stock: 36",
+        },
+        {
+          id: 11,
+          name: "Slim-Fit Jeans",
+          price: "$40",
+          desc: "Stretch denim jeans with a clean look.\nNarrow at the ankle for a sleek fit.\nPerfect for school or weekend hangouts.\nFade-resistant and comfy.",
+          img: "assest/youth/11.jfif",
+          rating: "★★★★☆ 4.3",
+          sold: "Sold: 150",
+          stock: "Stock: 28",
+        },
+        {
+          id: 12,
+          name: "Layered Dress",
+          price: "$44",
+          desc: "Trendy multi-layered dress for teen girls.\nChic and playful design.\nIdeal for parties or casual days.\nBreathable, soft fabric.",
+          img: "assest/youth/12.jfif",
+          rating: "★★★★☆ 4.5",
+          sold: "Sold: 85",
+          stock: "Stock: 15",
+        },
+        {
+          id: 13,
+          name: "Denim Dungaree",
+          price: "$42",
+          desc: "Youth classic overalls in washed denim.\nTrendy and casual look.\nAdjustable straps and front pocket.\nPairs great with tees or hoodies.",
+          img: "assest/youth/13.jfif",
+          rating: "★★★★☆ 4.2",
+          sold: "Sold: 98",
+          stock: "Stock: 18",
+        },
+        {
+          id: 14,
+          name: "Casual Blazer",
+          price: "$50",
+          desc: "Youth-fit blazer for a smart-casual look.\nPerfect for events or presentations.\nLightweight with soft lining.\nAvailable in grey, navy, and black.",
+          img: "assest/youth/14.jfif",
+          rating: "★★★★☆ 4.4",
+          sold: "Sold: 90",
+          stock: "Stock: 12",
+        },
+        {
+          id: 15,
+          name: "Athletic Shorts",
+          price: "$22",
+          desc: "Breathable shorts with mesh panels.\nPerfect for sports or PE class.\nDrawstring waistband and quick-dry fabric.\nYouth must-have item.",
+          img: "assest/youth/15.jfif",
+          rating: "★★★★☆ 4.1",
+          sold: "Sold: 125",
+          stock: "Stock: 42",
+        },
+        {
+          id: 16,
+          name: "Hooded Bomber Jacket",
+          price: "$52",
+          desc: "Stylish bomber with attached hoodie.\nInsulated for mild winters.\nFront zip and side pockets.\nPerfect for street-style lovers.",
+          img: "assest/youth/16.jfif",
+          rating: "★★★★★ 4.6",
+          sold: "Sold: 89",
+          stock: "Stock: 17",
+        },
+        {
+          id: 17,
+          name: "Plaid Mini Skirt",
+          price: "$26",
+          desc: "Trendy plaid skirt popular among teens.\nSoft fabric with side zipper.\nPerfect for school or social events.\nAvailable in pink and navy.",
+          img: "assest/youth/17.jfif",
+          rating: "★★★★☆ 4.2",
+          sold: "Sold: 97",
+          stock: "Stock: 24",
+        },
+        {
+          id: 18,
+          name: "Tie-Dye T-Shirt",
+          price: "$18",
+          desc: "Colorful tie-dye tee with a relaxed fit.\nTrendy, unique design every time.\nSoft cotton makes it breathable.\nYouth favorite for summer.",
+          img: "assest/youth/18.jfif",
+          rating: "★★★★☆ 4.3",
+          sold: "Sold: 145",
+          stock: "Stock: 40",
+        },
+        {
+          id: 19,
+          name: "Layered Kurta Set",
+          price: "$40",
+          desc: "Ethnic kurta with modern layered look.\nBest for festivals or casual cultural wear.\nSoft cotton with detailed embroidery.\nIncludes kurta and trousers.",
+          img: "assest/youth/19.jfif",
+          rating: "★★★★☆ 4.4",
+          sold: "Sold: 75",
+          stock: "Stock: 20",
+        },
+        {
+          id: 20,
+          name: "Printed Co-ord Set",
+          price: "$36",
+          desc: "Matching top and pants with bold prints.\nPerfect for youth fashion statements.\nComfortable and breathable fabric.\nGreat for day-outs or TikTok videos.",
+          img: "assest/youth/20.jfif",
+          rating: "★★★★☆ 4.3",
+          sold: "Sold: 80",
+          stock: "Stock: 21",
+        },
+      ];
+
+      let currentIndex = 0;
+      const perPage = 8;
+      const four = 4;
+
+      function loadMore() {
+        const container = document.getElementById("productContainer");
+
+        for (
+          let i = currentIndex;
+          i < currentIndex + perPage && i < youthProducts.length;
+          i++
+        ) {
+          const p = youthProducts[i];
+          const div = document.createElement("div");
+          div.className = "product";
+          div.innerHTML = `
+          <img src="${p.img}" alt="${p.name}" />
+          <h3>${p.name}</h3>
+          <p>${p.price}</p>
+          <button class="btn" onclick="buyNow(${p.id})">Buy Now</button>
+        `;
+          container.appendChild(div);
+        }
+
+        currentIndex += perPage;
+        if (currentIndex >= youthProducts.length) {
+          document.getElementById("pagination").style.display = "none";
+        }
+      }
+
+      function buyNow(id) {
+        const product = youthProducts.find((p) => p.id === id);
+        localStorage.setItem("selectedProduct", JSON.stringify(product));
+        window.location.href = "addToCart.html";
+      }
+
+      loadMore(); // Load first 5 on load
+    </script>
+
+    <!-- footer-section -->
+    <footer class="footer">
+      <div class="footer-container">
+        <!-- Navigation -->
+        <div class="footer-section">
+          <h3>Explore</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="women.html">Women</a></li>
+            <li><a href="man.html">Man</a></li>
+            <li><a href="youth.html">Youth</a></li>
+            <li><a href="community.html">Community</a></li>
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div class="footer-section">
+          <h3>Support</h3>
+          <ul>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li>
+              <a href="#"
+                ><abbr title="feedback not found at the time">Feedback</abbr></a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><abbr title="Policy have not published"
+                  >Terms & Policy</abbr
+                ></a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Social Media -->
+        <div class="footer-section">
+          <h3>Follow Us</h3>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/"
+              ><i class="fab fa-facebook"></i
+            ></a>
+            <a href="https://www.instagram.com/"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="https://www.twitter.com/"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a href="https://www.youtube.com/"
+              ><i class="fab fa-youtube"></i
+            ></a>
+          </div>
+        </div>
+
+        <!-- QR Code -->
+        <div class="footer-section qr">
+          <h3>Scan & Connect</h3>
+          <img
+            src="https://api.qrserver.com/v1/create-qr-code/?data=https://yourwebsite.com&size=120x120"
+            alt="QR Code"
+          />
+          <p>Scan to visit our website</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 CodeWithShahnawaz. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- signin/login -->
+    <!-- Popup Form -->
+    <div class="popup" id="popupForm">
+      <span class="close-btn" onclick="closePopup()">&times;</span>
+      <h2 id="formTitle">Welcome In</h2>
+
+      <!-- Signup Form -->
+      <form id="signupForm">
+        <label for="text"> Full name</label>
+        <input type="text" placeholder="Full Name" required />
+        <br />
+        <label for="email"> Email</label>
+        <input type="email" placeholder="Email" required />
+        <br />
+        <label for="tel"> Phone number</label>
+        <input type="tel" placeholder="Phone Number" required />
+        <br />
+        <label for="password"> Password</label>
+        <input type="password" placeholder="Password" required />
+        <br />
+        <label for="password"> Confirm Password</label>
+        <input type="password" placeholder="Confirm Password" required />
+        <br />
+        <button type="submit">Sign Up</button>
+        <div class="toggle-link">
+          Already have an account? <a onclick="toggleForm('login')">Sign in</a>
+        </div>
+      </form>
+
+      <!-- Login Form -->
+      <form id="loginForm" style="display: none">
+        <label for="text">Email/username</label>
+        <input type="text" placeholder="Email or Username" required />
+        <br />
+        <label for="password">Password</label>
+        <input type="password" placeholder="Password" required />
+        <br />
+        <button type="submit">Login</button>
+        <div class="toggle-link">
+          Don't have an account? <a onclick="toggleForm('signup')">Sign up</a>
+        </div>
+      </form>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

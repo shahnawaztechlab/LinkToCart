@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Man Products</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .banner {
+        max-width: 1024px;
+        width: 100%;
+        margin: 0px auto;
+        text-align: center;
+      }
+
+      .banner img {
+        width: 60%;
+      }
+
+      #productContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .product {
+        /* background-color: aqua; */
+        padding: 10px;
+        text-align: center;
+        border-radius: 10px;
+        width: 300px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Only shadow */
+        transition: 0.3s;
+      }
+
+      .product:hover {
+        box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
+        transform: translateY(-5px);
+      }
+
+      #pagination,
+      #productContainer {
+        margin-bottom: 20px;
+      }
+
+      .product img {
+        width: 100%;
+        height: 300px;
+        margin-bottom: 10px;
+      }
+
+      #pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .btn {
+        width: 100px;
+        height: 30px;
+        border-radius: 20px;
+        background-color: #28447e;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        background-color: #36589b;
+        transition: 0.3s all ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- header-section -->
+    <header class="navbar">
+      <div class="logo">
+        <p>LinkToCart</p>
+      </div>
+      <nav class="nav-links" id="nav-links">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="women.html">Woman</a></li>
+          <li><a href="man.html">Man</a></li>
+          <li><a href="youth.html">Youth</a></li>
+          <li><a href="community.html">Community</a></li>
+          <li><a href="contact.html">Contact US</a></li>
+        </ul>
+      </nav>
+
+      <div class="search-cart-user">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" placeholder="Search" />
+        <i class="fas fa-shopping-bag"></i>
+        <i class="fas fa-user" onclick="openPopup()"></i>
+      </div>
+
+      <div class="menu-toggle" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </header>
+
+    <!-- banner -->
+    <div class="banner">
+      <img src="assest/bannerman.png" alt="mansbanner" />
+    </div>
+
+    <div id="productContainer"></div>
+    <div id="pagination">
+      <button class="btn" onclick="loadMore()">load more</button>
+    </div>
+    <script>
+      const menProducts = [
+        {
+          id: 1,
+          name: "Polo Shirt",
+          price: "$25",
+          desc: "A classic cotton polo shirt that’s both stylish and breathable.\nPerfect for casual outings, summer wear, or layering.\nAvailable in multiple colors.\nA must-have for any wardrobe.",
+          img: "assest/man/1.webp",
+          rating: "★★★★☆ 4.3",
+          sold: "Sold: 120",
+          stock: "Stock: 30",
+        },
+        {
+          id: 2,
+          name: "Henley T-Shirt",
+          price: "$22",
+          desc: "Soft and stretchable Henley with a buttoned neckline.\nIdeal for layering under jackets or wearing solo.\nA versatile piece for both day and night.\nMade from high-quality breathable fabric.",
+          img: "assest/man/2.webp",
+          rating: "★★★★☆ 4.1",
+          sold: "Sold: 95",
+          stock: "Stock: 40",
+        },
+        {
+          id: 3,
+          name: "Oxford Shirt",
+          price: "$35",
+          desc: "Elegant slim-fit Oxford shirt designed for smart occasions.\nCrafted from breathable cotton with a sharp finish.\nPairs perfectly with chinos or jeans.\nYour go-to for formal and semi-formal events.",
+          img: "assest/man/3.webp",
+          rating: "★★★★★ 4.6",
+          sold: "Sold: 150",
+          stock: "Stock: 20",
+        },
+        {
+          id: 4,
+          name: "Flannel Shirt",
+          price: "$60",
+          desc: "Warm and soft flannel fabric in a timeless check pattern.\nIdeal for cold days and casual comfort.\nCan be layered over tees.\nDurable and cozy fit.",
+          img: "assest/man/4.jpg",
+          rating: "★★★★★ 4.5",
+          sold: "Sold: 110",
+          stock: "Stock: 15",
+        },
+        {
+          id: 5,
+          name: "Hoodie",
+          price: "$40",
+          desc: "Cozy fleece-lined hoodie perfect for everyday wear.\nKeeps you warm without sacrificing style.\nAvailable in solid and graphic prints.\nYour go-to for lounging or street style.",
+          img: "assest/man/5.jfif",
+          rating: "★★★★★ 4.7",
+          sold: "Sold: 180",
+          stock: "Stock: 25",
+        },
+        {
+          id: 6,
+          name: "Sweat Shirt",
+          price: "$49",
+          desc: "Lightweight and breathable sweatshirt for any season.\nComfortable fit with soft cotton lining.\nPerfect for casual and athletic use.\nMinimal design with maximum comfort.",
+          img: "assest/man/6.webp",
+          rating: "★★★★☆ 4.4",
+          sold: "Sold: 105",
+          stock: "Stock: 28",
+        },
+        {
+          id: 7,
+          name: "Denim Jacket",
+          price: "$55",
+          desc: "Iconic denim jacket that never goes out of style.\nRugged, durable, and versatile for all seasons.\nCan be layered or worn solo.\nGreat match with jeans and boots.",
+          img: "assest/man/7.webp",
+          rating: "★★★★★ 4.8",
+          sold: "Sold: 98",
+          stock: "Stock: 22",
+        },
+        {
+          id: 8,
+          name: "Python Shirt",
+          price: "$97",
+          desc: "A tech-themed shirt for Python programmers.\nShow off your dev pride in style.\nPremium cotton material.\nIdeal for coding meetups or work-from-home days.",
+          img: "assest/man/8.jpg",
+          rating: "★★★★☆ 4.2",
+          sold: "Sold: 60",
+          stock: "Stock: 12",
+        },
+        {
+          id: 9,
+          name: "JavaScript Shirt",
+          price: "$67",
+          desc: "Modern JS logo printed shirt for tech lovers.\nComfortable fit and soft fabric.\nLet your clothes speak code.\nGreat for conferences or casual coding days.",
+          img: "assest/man/9.jpg",
+          rating: "★★★★☆ 4.3",
+          sold: "Sold: 75",
+          stock: "Stock: 20",
+        },
+        {
+          id: 10,
+          name: "Coodie T-Shirt",
+          price: "$22",
+          desc: "Comfortable cotton T-shirt designed for coders.\nCool prints and smart fit.\nButtoned neckline adds flair.\nLet your passion reflect through your outfit.",
+          img: "assest/man/10.jfif",
+          rating: "★★★★☆ 4.1",
+          sold: "Sold: 80",
+          stock: "Stock: 18",
+        },
+        {
+          id: 11,
+          name: "Chinos",
+          price: "$35",
+          desc: "Smart-casual chinos made with premium cotton.\nTapered fit for a modern, clean silhouette.\nGreat for office and weekend outings.\nWrinkle-resistant and breathable.",
+          img: "assest/man/11.jfif",
+          rating: "★★★★★ 4.6",
+          sold: "Sold: 140",
+          stock: "Stock: 22",
+        },
+        {
+          id: 12,
+          name: "Slim-Fit Jeans",
+          price: "$40",
+          desc: "Stretchable denim with a modern slim fit.\nFades naturally with wear.\nPerfect balance of comfort and style.\nEveryday essential for every man.",
+          img: "assest/man/12.jfif",
+          rating: "★★★★☆ 4.4",
+          sold: "Sold: 130",
+          stock: "Stock: 30",
+        },
+        {
+          id: 13,
+          name: "Cargo Pants",
+          price: "$40",
+          desc: "Utility cargo pants with multiple pockets.\nComfortable and rugged for outdoor use.\nAdjustable fit and breathable fabric.\nA practical wardrobe upgrade.",
+          img: "assest/man/13.webp",
+          rating: "★★★★☆ 4.5",
+          sold: "Sold: 110",
+          stock: "Stock: 18",
+        },
+        {
+          id: 14,
+          name: "Joggers",
+          price: "$30",
+          desc: "Relaxed-fit joggers for sports or casual wear.\nSoft material with stretch waistband.\nStylish and versatile.\nPairs well with sneakers and hoodies.",
+          img: "assest/man/14.webp",
+          rating: "★★★★☆ 4.2",
+          sold: "Sold: 125",
+          stock: "Stock: 35",
+        },
+        {
+          id: 15,
+          name: "Tailored Trousers",
+          price: "$50",
+          desc: "Formal trousers with a tailored fit.\nDesigned for business meetings and events.\nCrease-line details add elegance.\nFeels as good as it looks.",
+          img: "assest/man/15.jpg",
+          rating: "★★★★☆ 4.5",
+          sold: "Sold: 85",
+          stock: "Stock: 14",
+        },
+        {
+          id: 16,
+          name: "Three Piece Suit",
+          price: "$150",
+          desc: "Complete wedding-ready three-piece suit.\nIncludes blazer, vest, and trousers.\nTailored to perfection.\nIdeal for weddings, parties, and events.",
+          img: "assest/man/16.jfif",
+          rating: "★★★★★ 4.9",
+          sold: "Sold: 65",
+          stock: "Stock: 10",
+        },
+        {
+          id: 17,
+          name: "Kurta Pajama",
+          price: "$45",
+          desc: "Traditional kurta pajama in breathable cotton.\nPerfect for Eid, weddings, and cultural events.\nElegant embroidery.\nLightweight and comfortable fit.",
+          img: "assest/man/17.jfif",
+          rating: "★★★★★ 4.6",
+          sold: "Sold: 90",
+          stock: "Stock: 20",
+        },
+        {
+          id: 18,
+          name: "Sherwani",
+          price: "$180",
+          desc: "Royal sherwani with intricate embroidery.\nStand out at any wedding or festive event.\nIncludes matching pants.\nHeavy yet breathable fabric.",
+          img: "assest/man/18.webp",
+          rating: "★★★★★ 4.8",
+          sold: "Sold: 55",
+          stock: "Stock: 8",
+        },
+        {
+          id: 19,
+          name: "Tuxedo",
+          price: "$200",
+          desc: "Premium black-tie tuxedo with satin lapels.\nSharp fit that brings out confidence.\nIdeal for weddings, events, and photoshoots.\nIncludes bowtie and inner vest.",
+          img: "assest/man/19.jpg",
+          rating: "★★★★★ 4.9",
+          sold: "Sold: 75",
+          stock: "Stock: 12",
+        },
+        {
+          id: 20,
+          name: "Tuxedo",
+          price: "$170",
+          desc: "Sleek formal tuxedo for men of class.\nTailored to showcase your presence.\nPerfect for gala nights and weddings.\nStylish, comfortable, and bold.",
+          img: "assest/man/20.jpg",
+          rating: "★★★★★ 4.7",
+          sold: "Sold: 68",
+          stock: "Stock: 10",
+        },
+      ];
+
+      let currentIndex = 0;
+      const perPage = 8;
+      const four = 4;
+
+      function loadMore() {
+        const container = document.getElementById("productContainer");
+
+        for (
+          let i = currentIndex;
+          i < currentIndex + perPage && i < menProducts.length;
+          i++
+        ) {
+          const p = menProducts[i];
+          const div = document.createElement("div");
+          div.className = "product";
+          div.innerHTML = `
+          <img src="${p.img}" alt="${p.name}" />
+          <h3>${p.name}</h3>
+          <p>${p.price}</p>
+          <button class="btn" onclick="buyNow(${p.id})">Buy Now</button>
+        `;
+          container.appendChild(div);
+        }
+
+        currentIndex += perPage;
+        if (currentIndex >= menProducts.length) {
+          document.getElementById("pagination").style.display = "none";
+        }
+      }
+
+      function buyNow(id) {
+        const product = menProducts.find((p) => p.id === id);
+        localStorage.setItem("selectedProduct", JSON.stringify(product));
+        window.location.href = "addToCart.html";
+      }
+
+      loadMore(); // Load first 5 on load
+    </script>
+
+    <!-- footer-section -->
+    <footer class="footer">
+      <div class="footer-container">
+        <!-- Navigation -->
+        <div class="footer-section">
+          <h3>Explore</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="women.html">Women</a></li>
+            <li><a href="man.html">Man</a></li>
+            <li><a href="youth.html">Youth</a></li>
+            <li><a href="community.html">Community</a></li>
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div class="footer-section">
+          <h3>Support</h3>
+          <ul>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li>
+              <a href="#"
+                ><abbr title="feedback not found at the time">Feedback</abbr></a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><abbr title="Policy have not published"
+                  >Terms & Policy</abbr
+                ></a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Social Media -->
+        <div class="footer-section">
+          <h3>Follow Us</h3>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/"
+              ><i class="fab fa-facebook"></i
+            ></a>
+            <a href="https://www.instagram.com/"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="https://www.twitter.com/"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a href="https://www.youtube.com/"
+              ><i class="fab fa-youtube"></i
+            ></a>
+          </div>
+        </div>
+
+        <!-- QR Code -->
+        <div class="footer-section qr">
+          <h3>Scan & Connect</h3>
+          <img
+            src="https://api.qrserver.com/v1/create-qr-code/?data=https://yourwebsite.com&size=120x120"
+            alt="QR Code"
+          />
+          <p>Scan to visit our website</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 CodeWithShahnawaz. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- signin/login -->
+    <!-- Popup Form -->
+    <div class="popup" id="popupForm">
+      <span class="close-btn" onclick="closePopup()">&times;</span>
+      <h2 id="formTitle">Welcome In</h2>
+
+      <!-- Signup Form -->
+      <form id="signupForm">
+        <label for="text"> Full name</label>
+        <input type="text" placeholder="Full Name" required />
+        <br />
+        <label for="email"> Email</label>
+        <input type="email" placeholder="Email" required />
+        <br />
+        <label for="tel"> Phone number</label>
+        <input type="tel" placeholder="Phone Number" required />
+        <br />
+        <label for="password"> Password</label>
+        <input type="password" placeholder="Password" required />
+        <br />
+        <label for="password"> Confirm Password</label>
+        <input type="password" placeholder="Confirm Password" required />
+        <br />
+        <button type="submit">Sign Up</button>
+        <div class="toggle-link">
+          Already have an account? <a onclick="toggleForm('login')">Sign in</a>
+        </div>
+      </form>
+
+      <!-- Login Form -->
+      <form id="loginForm" style="display: none">
+        <label for="text">Email/username</label>
+        <input type="text" placeholder="Email or Username" required />
+        <br />
+        <label for="password">Password</label>
+        <input type="password" placeholder="Password" required />
+        <br />
+        <button type="submit">Login</button>
+        <div class="toggle-link">
+          Don't have an account? <a onclick="toggleForm('signup')">Sign up</a>
+        </div>
+      </form>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

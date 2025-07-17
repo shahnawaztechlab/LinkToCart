@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer Help</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #fff;
+        color: #333;
+      }
+
+      .banner {
+        width: 100%;
+        max-width: 1024px;
+        text-align: center;
+        background-image: url(assest/contactbanner.avif);
+        height: 400px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin: 5px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 20px;
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        gap: 40px;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 36px;
+        margin-bottom: 10px;
+      }
+
+      .subtitle {
+        text-align: center;
+        color: #777;
+        margin-bottom: 40px;
+      }
+
+      /* Left Sidebar */
+      .sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .sidebar a {
+        text-decoration: none;
+        color: #000;
+        font-size: 16px;
+        padding: 5px 0;
+      }
+
+      .sidebar a.active {
+        font-weight: bold;
+      }
+
+      /* Contact Form */
+      .contact-form {
+        background: #f9f9f9;
+        padding: 20px;
+        border-radius: 5px;
+      }
+
+      .contact-form label {
+        display: block;
+        font-size: 14px;
+        margin: 10px 0 5px;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+
+      .contact-form textarea {
+        height: 100px;
+        resize: none;
+      }
+
+      .recaptcha {
+        margin: 15px 0;
+        background: #eee;
+        padding: 10px;
+        text-align: center;
+        font-size: 14px;
+        color: #666;
+      }
+
+      .contact-form button {
+        background: #555;
+        color: #fff;
+        border: none;
+        padding: 12px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        width: 100%;
+        border-radius: 4px;
+      }
+
+      .contact-form button:hover {
+        background: #333;
+      }
+
+      /* Support Section */
+      .support {
+        font-size: 14px;
+        color: #666;
+      }
+
+      .support strong {
+        color: #000;
+      }
+
+      .support a {
+        display: inline-block;
+        margin-top: 10px;
+        text-decoration: none;
+        color: #000;
+        font-weight: bold;
+      }
+
+      /* Responsive */
+      @media (max-width: 900px) {
+        .container {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- header-section -->
+    <header class="navbar">
+      <div class="logo">
+        <p>LinkToCart</p>
+      </div>
+      <nav class="nav-links" id="nav-links">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="women.html">Woman</a></li>
+          <li><a href="man.html">Man</a></li>
+          <li><a href="youth.html">Youth</a></li>
+          <li><a href="community.html">Community</a></li>
+          <li><a href="contact.html">Contact US</a></li>
+        </ul>
+      </nav>
+
+      <div class="search-cart-user">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" placeholder="Search" />
+        <i class="fas fa-shopping-bag"></i>
+        <i class="fas fa-user" onclick="openPopup()"></i>
+      </div>
+
+      <div class="menu-toggle" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </header>
+
+    <!-- contact -->
+    <div class="banner"></div>
+    <div class="container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <a href="#">FAQs</a>
+        <a href="#">Ordering</a>
+        <a href="#">Shipping</a>
+        <a href="#">Returns + Exchanges</a>
+        <a href="#">International</a>
+        <a href="#">Sustainability</a>
+        <a href="contact.html" class="active">Contact</a>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="contact-form">
+        <label>Subject</label>
+        <input type="text" placeholder="Enter subject" />
+
+        <label>Name</label>
+        <input type="text" placeholder="Enter your name" />
+
+        <label>Email</label>
+        <input type="email" placeholder="Enter your email" />
+
+        <label>Message</label>
+        <textarea placeholder="Enter your message here..."></textarea>
+
+        <div class="recaptcha">[ reCAPTCHA placeholder ]</div>
+
+        <button type="submit">SUBMIT</button>
+      </div>
+
+      <!-- Support Info -->
+      <div class="support">
+        <p>
+          <strong>Support Hours:</strong><br />
+          Mon-Fri: 9:00am – 5:00pm PST<br />
+          *Excludes Holidays
+        </p>
+        <p>Looking for more info on products, shipping, fabric, and more?</p>
+        <a href="#">VIEW FAQ</a>
+      </div>
+    </div>
+
+    <!-- footer-section -->
+    <footer class="footer">
+      <div class="footer-container">
+        <!-- Navigation -->
+        <div class="footer-section">
+          <h3>Explore</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="women.html">Women</a></li>
+            <li><a href="man.html">Man</a></li>
+            <li><a href="youth.html">Youth</a></li>
+            <li><a href="community.html">Community</a></li>
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div class="footer-section">
+          <h3>Support</h3>
+          <ul>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li>
+              <a href="#"
+                ><abbr title="feedback not found at the time">Feedback</abbr></a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><abbr title="Policy have not published"
+                  >Terms & Policy</abbr
+                ></a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Social Media -->
+        <div class="footer-section">
+          <h3>Follow Us</h3>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/"
+              ><i class="fab fa-facebook"></i
+            ></a>
+            <a href="https://www.instagram.com/"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="https://www.twitter.com/"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a href="https://www.youtube.com/"
+              ><i class="fab fa-youtube"></i
+            ></a>
+          </div>
+        </div>
+
+        <!-- QR Code -->
+        <div class="footer-section qr">
+          <h3>Scan & Connect</h3>
+          <img
+            src="https://api.qrserver.com/v1/create-qr-code/?data=https://yourwebsite.com&size=120x120"
+            alt="QR Code"
+          />
+          <p>Scan to visit our website</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 CodeWithShahnawaz. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- signin/login -->
+    <!-- Popup Form -->
+    <div class="popup" id="popupForm">
+      <span class="close-btn" onclick="closePopup()">&times;</span>
+      <h2 id="formTitle">Welcome In</h2>
+
+      <!-- Signup Form -->
+      <form id="signupForm">
+        <label for="text"> Full name</label>
+        <input type="text" placeholder="Full Name" required />
+        <br />
+        <label for="email"> Email</label>
+        <input type="email" placeholder="Email" required />
+        <br />
+        <label for="tel"> Phone number</label>
+        <input type="tel" placeholder="Phone Number" required />
+        <br />
+        <label for="password"> Password</label>
+        <input type="password" placeholder="Password" required />
+        <br />
+        <label for="password"> Confirm Password</label>
+        <input type="password" placeholder="Confirm Password" required />
+        <br />
+        <button type="submit">Sign Up</button>
+        <div class="toggle-link">
+          Already have an account? <a onclick="toggleForm('login')">Sign in</a>
+        </div>
+      </form>
+
+      <!-- Login Form -->
+      <form id="loginForm" style="display: none">
+        <label for="text">Email/username</label>
+        <input type="text" placeholder="Email or Username" required />
+        <br />
+        <label for="password">Password</label>
+        <input type="password" placeholder="Password" required />
+        <br />
+        <button type="submit">Login</button>
+        <div class="toggle-link">
+          Don't have an account? <a onclick="toggleForm('signup')">Sign up</a>
+        </div>
+      </form>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

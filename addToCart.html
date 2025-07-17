@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Detail</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      .productDetails {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        max-width: 800px;
+        margin: 10px auto;
+        padding: 15px;
+        flex-wrap: wrap;
+      }
+
+      .products-content {
+        flex-direction: column;
+      }
+
+      #productImg {
+        max-width: 500px;
+        min-width: 300px;
+        height: 300px;
+        border-radius: 20px;
+      }
+
+      #productName {
+        font-size: 40px;
+        color: #11203f;
+      }
+
+      .btn {
+        width: 100px;
+        height: 30px;
+        border-radius: 20px;
+        border: 2px solid #11203f;
+        background: transparent;
+        font-weight: bold;
+        color: #11203f;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        background-color: #1543a0;
+        transition: 0.5s all ease-in-out;
+        color: #fff;
+      }
+
+      /* other */
+
+      .product-other-section {
+        max-width: 1200px;
+        margin: 10px auto;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 32px;
+        margin-bottom: 30px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .product-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+      }
+
+      .product-card {
+        background: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        width: 260px;
+        transition: transform 0.3s ease;
+      }
+
+      .product-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .product-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .product-content {
+        padding: 15px;
+        text-align: center;
+      }
+
+      .product-name {
+        font-size: 18px;
+        font-weight: bold;
+        color: #222;
+        margin-bottom: 10px;
+      }
+
+      .product-price {
+        font-size: 16px;
+        color: #007bff;
+        margin-bottom: 15px;
+      }
+
+      .buy-btn {
+        background: #28447e;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .buy-btn:hover {
+        background: #395ba0;
+      }
+
+      /* Responsive for mobile */
+      @media (max-width: 768px) {
+        .product-card {
+          width: 100%;
+          max-width: 320px;
+        }
+      }
+
+      #srch {
+        width: 40px;
+        height: 30px;
+        border-radius: 10px;
+        outline: none;
+        border: 2px solid #11203f;
+        text-align: right;
+        margin-top: 10px;
+        cursor: pointer;
+      }
+
+      #increment,
+      #decrement {
+        width: 40px;
+        border: 2px solid #11203f;
+        background-color: #11203f;
+        color: #fff;
+        font-size: 20px;
+        border-radius: 20px;
+        cursor: grab;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- header-section -->
+    <header class="navbar">
+      <div class="logo">
+        <p>LinkToCart</p>
+      </div>
+      <nav class="nav-links" id="nav-links">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="women.html">Woman</a></li>
+          <li><a href="man.html">Man</a></li>
+          <li><a href="youth.html">Youth</a></li>
+          <li><a href="community.html">Community</a></li>
+          <li><a href="contact.html">Contact US</a></li>
+        </ul>
+      </nav>
+
+      <div class="search-cart-user">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" placeholder="Search" />
+        <i class="fas fa-shopping-bag"></i>
+        <i class="fas fa-user" onclick="openPopup()"></i>
+      </div>
+
+      <div class="menu-toggle" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </header>
+
+    <!-- addTocart -->
+    <div class="productDetails" id="productDetail">
+      <img id="productImg" src="" />
+      <div class="products-content">
+        <h2 id="productName"></h2>
+        <p id="productDesc"></p>
+        <p id="productPrice"></p>
+        <p id="rating"></p>
+        <div style="display: flex; gap: 20px">
+          <p id="sold"></p>
+          <p id="stock"></p>
+        </div>
+        <button id="increment" onclick="increment()">+</button>
+        <input type="number" value="1" id="srch" readonly />
+        <button id="decrement" onclick="decrement()">-</button>
+        <br />
+        <p id="priceMultiple"></p>
+        <br />
+        <button class="btn" onclick="popup()">Buy Now</button>
+      </div>
+    </div>
+
+    <!-- product-other-section -->
+    <div class="product-other-section">
+      <h2 class="section-title">Other Products</h2>
+
+      <div class="product-grid">
+        <div class="product-card">
+          <img src="assest/women/4.jpg" alt="Product 1" />
+          <div class="product-content">
+            <div class="product-name">Blouse</div>
+            <div class="product-price">$49.99</div>
+            <button class="buy-btn">Buy Now</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <img src="assest/man/7.webp" alt="Product 2" />
+          <div class="product-content">
+            <div class="product-name">Denim Jacket</div>
+            <div class="product-price">$55.00</div>
+            <button class="buy-btn">Buy Now</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <img src="assest/youth/7.jfif" alt="Product 3" />
+          <div class="product-content">
+            <div class="product-name">Flannel Shirt</div>
+            <div class="product-price">$35.50</div>
+            <button class="buy-btn">Buy Now</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <img src="assest/youth/6.jfif" alt="Product 4" />
+          <div class="product-content">
+            <div class="product-name">Track Suit</div>
+            <div class="product-price">$60.99</div>
+            <button class="buy-btn">Buy Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- footer-section -->
+    <footer class="footer">
+      <div class="footer-container">
+        <!-- Navigation -->
+        <div class="footer-section">
+          <h3>Explore</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="women.html">Women</a></li>
+            <li><a href="man.html">Man</a></li>
+            <li><a href="youth.html">Youth</a></li>
+            <li><a href="community.html">Community</a></li>
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div class="footer-section">
+          <h3>Support</h3>
+          <ul>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li>
+              <a href="#"
+                ><abbr title="feedback not found at the time">Feedback</abbr></a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><abbr title="Policy have not published"
+                  >Terms & Policy</abbr
+                ></a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Social Media -->
+        <div class="footer-section">
+          <h3>Follow Us</h3>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/"
+              ><i class="fab fa-facebook"></i
+            ></a>
+            <a href="https://www.instagram.com/"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="https://www.twitter.com/"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a href="https://www.youtube.com/"
+              ><i class="fab fa-youtube"></i
+            ></a>
+          </div>
+        </div>
+
+        <!-- QR Code -->
+        <div class="footer-section qr">
+          <h3>Scan & Connect</h3>
+          <img
+            src="https://api.qrserver.com/v1/create-qr-code/?data=https://yourwebsite.com&size=120x120"
+            alt="QR Code"
+          />
+          <p>Scan to visit our website</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 CodeWithShahnawaz. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- signin/login -->
+    <!-- Popup Form -->
+    <div class="popup" id="popupForm">
+      <span class="close-btn" onclick="closePopup()">&times;</span>
+      <h2 id="formTitle">Welcome In</h2>
+
+      <!-- Signup Form -->
+      <form id="signupForm">
+        <label for="text"> Full name</label>
+        <input type="text" placeholder="Full Name" required />
+        <br />
+        <label for="email"> Email</label>
+        <input type="email" placeholder="Email" required />
+        <br />
+        <label for="tel"> Phone number</label>
+        <input type="tel" placeholder="Phone Number" required />
+        <br />
+        <label for="password"> Password</label>
+        <input type="password" placeholder="Password" required />
+        <br />
+        <label for="password"> Confirm Password</label>
+        <input type="password" placeholder="Confirm Password" required />
+        <br />
+        <button type="submit">Sign Up</button>
+        <div class="toggle-link">
+          Already have an account? <a onclick="toggleForm('login')">Sign in</a>
+        </div>
+      </form>
+
+      <!-- Login Form -->
+      <form id="loginForm" style="display: none">
+        <label for="text">Email/username</label>
+        <input type="text" placeholder="Email or Username" required />
+        <br />
+        <label for="password">Password</label>
+        <input type="password" placeholder="Password" required />
+        <br />
+        <button type="submit">Login</button>
+        <div class="toggle-link">
+          Don't have an account? <a onclick="toggleForm('signup')">Sign up</a>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      let p; // Make it global
+      const data = localStorage.getItem("selectedProduct");
+
+      if (data) {
+        p = JSON.parse(data); // assign to global `p`
+        document.getElementById("productImg").src = p.img;
+        document.getElementById("productName").innerText = p.name;
+        document.getElementById("productDesc").innerText = p.desc;
+        document.getElementById("productPrice").innerText = "Price: " + p.price;
+        document.getElementById("rating").innerText = p.rating;
+        document.getElementById("sold").innerText = p.sold;
+        document.getElementById("stock").innerText = p.stock;
+      } else {
+        document.getElementById("productDetail").innerHTML =
+          "<h3>No product selected</h3>";
+      }
+
+      let inputValue = 1;
+      const srch = document.getElementById("srch");
+
+      function increment() {
+        inputValue++;
+        srch.value = inputValue;
+      }
+
+      function decrement() {
+        if (inputValue > 1) {
+          inputValue--;
+          srch.value = inputValue;
+        }
+      }
+
+      function popup() {
+        if (!p) return alert("No product found!");
+
+        let name = p.name;
+        let price = parseFloat(p.price.replace("$", "")); // remove $ if present
+        let quantity = parseInt(srch.value);
+        let total = price * quantity;
+
+        alert(`Product: ${name}\nTotal Amount: $${total.toFixed(2)}`);
+      }
+    </script>
+
+    <script src="script.js"></script>
+  </body>
+</html>
