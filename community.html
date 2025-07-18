@@ -131,6 +131,19 @@
     </style>
   </head>
   <body>
+    <!-- Slide-in Cart Sidebar -->
+    <div id="cartSidebar">
+      <div class="cart-header">
+        <h2>Your Cart</h2>
+        <span class="close-cart" onclick="closeCart()">&times;</span>
+      </div>
+      <div id="cartItemsList"></div>
+      <div class="cart-footer">
+        <h3 id="cartTotalSidebar">Total: $0.00</h3>
+        <button class="checkout-btn" onclick="checkout()">Checkout</button>
+      </div>
+    </div>
+
     <!-- header-section -->
     <header class="navbar">
       <div class="logo">
@@ -141,7 +154,7 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="women.html">Woman</a></li>
           <li><a href="man.html">Man</a></li>
-          <li><a href="youth.html">Youth</a></li>
+          <li><a href="fashonWeek.html">Discount</a></li>
           <li><a href="community.html">Community</a></li>
           <li><a href="contact.html">Contact US</a></li>
         </ul>
@@ -150,7 +163,11 @@
       <div class="search-cart-user">
         <i class="fa-solid fa-magnifying-glass"></i>
         <input type="text" placeholder="Search" />
-        <i class="fas fa-shopping-bag"></i>
+        <div class="cart-icon" onclick="openCart()">
+          <i class="fa-solid fa-cart-plus" onclick="openCart()"></i>
+          <span id="cartCount">0</span>
+        </div>
+
         <i class="fas fa-user" onclick="openPopup()"></i>
       </div>
 

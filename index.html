@@ -14,6 +14,19 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <!-- Slide-in Cart Sidebar -->
+    <div id="cartSidebar">
+      <div class="cart-header">
+        <h2>Your Cart</h2>
+        <span class="close-cart" onclick="closeCart()">&times;</span>
+      </div>
+      <div id="cartItemsList"></div>
+      <div class="cart-footer">
+        <h3 id="cartTotalSidebar">Total: $0.00</h3>
+        <button class="checkout-btn" onclick="checkout()">Checkout</button>
+      </div>
+    </div>
+
     <!-- header-section -->
     <header class="navbar">
       <div class="logo">
@@ -24,7 +37,7 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="women.html">Woman</a></li>
           <li><a href="man.html">Man</a></li>
-          <li><a href="youth.html">Youth</a></li>
+          <li><a href="fashonWeek.html">Discount</a></li>
           <li><a href="community.html">Community</a></li>
           <li><a href="contact.html">Contact US</a></li>
         </ul>
@@ -33,7 +46,11 @@
       <div class="search-cart-user">
         <i class="fa-solid fa-magnifying-glass"></i>
         <input type="text" placeholder="Search" />
-        <i class="fas fa-shopping-bag"></i>
+        <div class="cart-icon" onclick="openCart()">
+          <i class="fa-solid fa-cart-plus" onclick="openCart()"></i>
+          <span id="cartCount">0</span>
+        </div>
+
         <i class="fas fa-user" onclick="openPopup()"></i>
       </div>
 
@@ -186,8 +203,12 @@
           <h2>Top 10 Best Sellers</h2>
           <p>Best Seller Products</p>
           <div class="tabs">
-            <button class="tab active">Special Offers</button>
-            <button class="tab">Best Selling</button>
+            <button class="tab active">
+              <a href="youth.html" class="btn">Special Offers</a>
+            </button>
+            <button class="tab">
+              <a href="contact.html" class="btn">Best Selling</a>
+            </button>
           </div>
         </div>
 
@@ -197,7 +218,7 @@
             <p>
               Check out our best selling product & get amazing up to 25% off.
             </p>
-            <a href="#" class="btn">See All</a>
+            <a href="youth.html" class="btn">See All</a>
           </div>
 
           <div class="product-cards">
@@ -205,21 +226,21 @@
               <img src="assest/4.avif" alt="Mom Swing" />
               <h4>Mom Swing</h4>
               <p>For Age 1.5 - 3 yrs</p>
-              <span>$199.00</span>
+              <span><a href="man.html">Handsome look</a></span>
             </div>
 
             <div class="p-card">
               <img src="assest/5.webp" alt="Xbox" />
               <h4>Xbox Series X & S</h4>
               <p>Top Entertainment</p>
-              <span>$445.00</span>
+              <span><a href="women.html">Cute show</a></span>
             </div>
 
             <div class="p-card">
               <img src="assest/6.jfif" alt="Cycle" />
               <h4>YooToo Cycle</h4>
               <p>Best for 4+ Age</p>
-              <span>$150.00</span>
+              <span><a href="youth.html">Cool</a></span>
             </div>
           </div>
         </div>
@@ -293,7 +314,7 @@
       <!-- Top Section -->
       <div class="top-header">
         <h2>Premium Partnerships</h2>
-        <button class="view-btn">View All</button>
+        <!-- <button class="view-btn">View All</button> -->
       </div>
 
       <!-- Partner Cards Row -->
@@ -358,8 +379,18 @@
           <h3>Support</h3>
           <ul>
             <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="#"><abbr title="feedback not found at the time">Feedback</abbr></a></li>
-            <li><a href="#"><abbr title="Policy have not published">Terms & Policy</abbr></a></li>
+            <li>
+              <a href="#"
+                ><abbr title="feedback not found at the time">Feedback</abbr></a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><abbr title="Policy have not published"
+                  >Terms & Policy</abbr
+                ></a
+              >
+            </li>
           </ul>
         </div>
 
@@ -367,20 +398,25 @@
         <div class="footer-section">
           <h3>Follow Us</h3>
           <div class="social-icons">
-            <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.facebook.com/"
+              ><i class="fab fa-facebook"></i
+            ></a>
+            <a href="https://www.instagram.com/"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="https://www.twitter.com/"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a href="https://www.youtube.com/"
+              ><i class="fab fa-youtube"></i
+            ></a>
           </div>
         </div>
 
         <!-- QR Code -->
         <div class="footer-section qr">
           <h3>Scan & Connect</h3>
-          <img
-            src="LinkToCart.png"
-            alt="QR Code"
-          />
+          <img src="LinkToCart.png" alt="QR Code" />
           <p>Scan to visit our website</p>
         </div>
       </div>
@@ -412,7 +448,7 @@
         <br />
         <label for="password"> Confirm Password</label>
         <input type="password" placeholder="Confirm Password" required />
-        <br>
+        <br />
         <button type="submit">Sign Up</button>
         <div class="toggle-link">
           Already have an account? <a onclick="toggleForm('login')">Sign in</a>

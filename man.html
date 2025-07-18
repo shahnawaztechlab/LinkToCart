@@ -81,6 +81,19 @@
     </style>
   </head>
   <body>
+    <!-- Slide-in Cart Sidebar -->
+    <div id="cartSidebar">
+      <div class="cart-header">
+        <h2>Your Cart</h2>
+        <span class="close-cart" onclick="closeCart()">&times;</span>
+      </div>
+      <div id="cartItemsList"></div>
+      <div class="cart-footer">
+        <h3 id="cartTotalSidebar">Total: $0.00</h3>
+        <button class="checkout-btn" onclick="checkout()">Checkout</button>
+      </div>
+    </div>
+
     <!-- header-section -->
     <header class="navbar">
       <div class="logo">
@@ -91,7 +104,7 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="women.html">Woman</a></li>
           <li><a href="man.html">Man</a></li>
-          <li><a href="youth.html">Youth</a></li>
+          <li><a href="fashonWeek.html">Discount</a></li>
           <li><a href="community.html">Community</a></li>
           <li><a href="contact.html">Contact US</a></li>
         </ul>
@@ -100,7 +113,11 @@
       <div class="search-cart-user">
         <i class="fa-solid fa-magnifying-glass"></i>
         <input type="text" placeholder="Search" />
-        <i class="fas fa-shopping-bag"></i>
+        <div class="cart-icon" onclick="openCart()">
+          <i class="fa-solid fa-cart-plus" onclick="openCart()"></i>
+          <span id="cartCount">0</span>
+        </div>
+
         <i class="fas fa-user" onclick="openPopup()"></i>
       </div>
 
@@ -118,6 +135,118 @@
     <div id="pagination">
       <button class="btn" onclick="loadMore()">load more</button>
     </div>
+
+    <!-- footer-section -->
+    <footer class="footer">
+      <div class="footer-container">
+        <!-- Navigation -->
+        <div class="footer-section">
+          <h3>Explore</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="women.html">Women</a></li>
+            <li><a href="man.html">Man</a></li>
+            <li><a href="youth.html">Youth</a></li>
+            <li><a href="community.html">Community</a></li>
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div class="footer-section">
+          <h3>Support</h3>
+          <ul>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li>
+              <a href="#"
+                ><abbr title="feedback not found at the time">Feedback</abbr></a
+              >
+            </li>
+            <li>
+              <a href="#"
+                ><abbr title="Policy have not published"
+                  >Terms & Policy</abbr
+                ></a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Social Media -->
+        <div class="footer-section">
+          <h3>Follow Us</h3>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/"
+              ><i class="fab fa-facebook"></i
+            ></a>
+            <a href="https://www.instagram.com/"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="https://www.twitter.com/"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a href="https://www.youtube.com/"
+              ><i class="fab fa-youtube"></i
+            ></a>
+          </div>
+        </div>
+
+        <!-- QR Code -->
+        <div class="footer-section qr">
+          <h3>Scan & Connect</h3>
+          <img src="LinkToCart.png" alt="QR Code" />
+          <p>Scan to visit our website</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 CodeWithShahnawaz. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- signin/login -->
+    <!-- Popup Form -->
+    <div class="popup" id="popupForm">
+      <span class="close-btn" onclick="closePopup()">&times;</span>
+      <h2 id="formTitle">Welcome In</h2>
+
+      <!-- Signup Form -->
+      <form id="signupForm">
+        <label for="text"> Full name</label>
+        <input type="text" placeholder="Full Name" required />
+        <br />
+        <label for="email"> Email</label>
+        <input type="email" placeholder="Email" required />
+        <br />
+        <label for="tel"> Phone number</label>
+        <input type="tel" placeholder="Phone Number" required />
+        <br />
+        <label for="password"> Password</label>
+        <input type="password" placeholder="Password" required />
+        <br />
+        <label for="password"> Confirm Password</label>
+        <input type="password" placeholder="Confirm Password" required />
+        <br />
+        <button type="submit">Sign Up</button>
+        <div class="toggle-link">
+          Already have an account? <a onclick="toggleForm('login')">Sign in</a>
+        </div>
+      </form>
+
+      <!-- Login Form -->
+      <form id="loginForm" style="display: none">
+        <label for="text">Email/username</label>
+        <input type="text" placeholder="Email or Username" required />
+        <br />
+        <label for="password">Password</label>
+        <input type="password" placeholder="Password" required />
+        <br />
+        <button type="submit">Login</button>
+        <div class="toggle-link">
+          Don't have an account? <a onclick="toggleForm('signup')">Sign up</a>
+        </div>
+      </form>
+    </div>
+
     <script>
       const menProducts = [
         {
@@ -360,117 +489,6 @@
 
       loadMore(); // Load first 5 on load
     </script>
-
-    <!-- footer-section -->
-    <footer class="footer">
-      <div class="footer-container">
-        <!-- Navigation -->
-        <div class="footer-section">
-          <h3>Explore</h3>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="women.html">Women</a></li>
-            <li><a href="man.html">Man</a></li>
-            <li><a href="youth.html">Youth</a></li>
-            <li><a href="community.html">Community</a></li>
-          </ul>
-        </div>
-
-        <!-- Support -->
-        <div class="footer-section">
-          <h3>Support</h3>
-          <ul>
-            <li><a href="contact.html">Contact Us</a></li>
-            <li>
-              <a href="#"
-                ><abbr title="feedback not found at the time">Feedback</abbr></a
-              >
-            </li>
-            <li>
-              <a href="#"
-                ><abbr title="Policy have not published"
-                  >Terms & Policy</abbr
-                ></a
-              >
-            </li>
-          </ul>
-        </div>
-
-        <!-- Social Media -->
-        <div class="footer-section">
-          <h3>Follow Us</h3>
-          <div class="social-icons">
-            <a href="https://www.facebook.com/"
-              ><i class="fab fa-facebook"></i
-            ></a>
-            <a href="https://www.instagram.com/"
-              ><i class="fab fa-instagram"></i
-            ></a>
-            <a href="https://www.twitter.com/"
-              ><i class="fab fa-twitter"></i
-            ></a>
-            <a href="https://www.youtube.com/"
-              ><i class="fab fa-youtube"></i
-            ></a>
-          </div>
-        </div>
-
-        <!-- QR Code -->
-        <div class="footer-section qr">
-          <h3>Scan & Connect</h3>
-          <img src="LinkToCart.png" alt="QR Code" />
-          <p>Scan to visit our website</p>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <p>&copy; 2025 CodeWithShahnawaz. All rights reserved.</p>
-      </div>
-    </footer>
-
-    <!-- signin/login -->
-    <!-- Popup Form -->
-    <div class="popup" id="popupForm">
-      <span class="close-btn" onclick="closePopup()">&times;</span>
-      <h2 id="formTitle">Welcome In</h2>
-
-      <!-- Signup Form -->
-      <form id="signupForm">
-        <label for="text"> Full name</label>
-        <input type="text" placeholder="Full Name" required />
-        <br />
-        <label for="email"> Email</label>
-        <input type="email" placeholder="Email" required />
-        <br />
-        <label for="tel"> Phone number</label>
-        <input type="tel" placeholder="Phone Number" required />
-        <br />
-        <label for="password"> Password</label>
-        <input type="password" placeholder="Password" required />
-        <br />
-        <label for="password"> Confirm Password</label>
-        <input type="password" placeholder="Confirm Password" required />
-        <br />
-        <button type="submit">Sign Up</button>
-        <div class="toggle-link">
-          Already have an account? <a onclick="toggleForm('login')">Sign in</a>
-        </div>
-      </form>
-
-      <!-- Login Form -->
-      <form id="loginForm" style="display: none">
-        <label for="text">Email/username</label>
-        <input type="text" placeholder="Email or Username" required />
-        <br />
-        <label for="password">Password</label>
-        <input type="password" placeholder="Password" required />
-        <br />
-        <button type="submit">Login</button>
-        <div class="toggle-link">
-          Don't have an account? <a onclick="toggleForm('signup')">Sign up</a>
-        </div>
-      </form>
-    </div>
 
     <script src="script.js"></script>
   </body>

@@ -2,6 +2,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Concert+One&display=swap");
 
+/* universal-selector */
+
 * {
   margin: 0;
   padding: 0;
@@ -829,6 +831,10 @@ body {
   color: #28447e;
 }
 
+.p-card span a {
+  color: #28447e;
+}
+
 .p-card:hover {
   transform: translateY(-5px);
 }
@@ -910,7 +916,6 @@ body {
 .filters a:hover button {
   color: #fff;
 }
-
 
 .products-card {
   display: grid;
@@ -1164,8 +1169,6 @@ body {
   color: #aaa;
 }
 
-
-
 /* Responsive */
 @media (max-width: 768px) {
   .footer-container {
@@ -1238,12 +1241,12 @@ body {
   font-size: 14px;
   margin-bottom: 5px; /* spacing below the label */
   color: #444;
-  display: block;     /* ensures label takes full width above input */
+  display: block; /* ensures label takes full width above input */
 }
 
 .popup form input {
   padding: 10px;
-  margin-bottom: 15px;  /* spacing below the input */
+  margin-bottom: 15px; /* spacing below the input */
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 14px;
@@ -1285,4 +1288,192 @@ body {
   .popup {
     padding: 20px;
   }
+}
+
+/* addToCart-slidediv */
+
+/* cart-work-icon */
+/* Cart Badge */
+.cart-icon {
+  /* position: absolute; */
+  top: 20px;
+  right: 20px;
+  font-size: 30px;
+  cursor: pointer;
+}
+#cartCount {
+  position: absolute;
+  top: 20px;
+  right: 110px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (max-width: 1440px) {
+  #cartCount {
+    position: absolute;
+    right: 130px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  #cartCount {
+    position: absolute;
+    right: 90px;
+  }
+}
+@media screen and (max-width: 768px) {
+  #cartCount {
+    position: absolute;
+    right: 320px;
+  }
+}
+@media screen and (max-width: 425px) {
+  #cartCount {
+    position: absolute;
+    right: 150px;
+  }
+}
+@media screen and (max-width: 375px) {
+  #cartCount {
+    position: absolute;
+    right: 125px;
+  }
+}
+@media screen and (max-width: 320px) {
+  #cartCount {
+    position: absolute;
+    right: 100px;
+  }
+}
+/* Slide-in Cart Sidebar */
+#cartSidebar {
+  position: fixed;
+  top: 0;
+  right: -380px; /* hidden initially */
+  width: 300px;
+  height: 100%;
+  background: #fff;
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.2);
+  transition: right 0.4s ease;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+#cartSidebar.active {
+  right: 0;
+}
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+.close-cart {
+  font-size: 24px;
+  cursor: pointer;
+}
+#cartItemsList {
+  flex: 1;
+  overflow-y: auto;
+  margin-top: 15px;
+}
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+.cart-item-info {
+  flex: 1;
+}
+.cart-item-name {
+  font-weight: bold;
+  color: #11203f;
+  margin-bottom: 5px;
+}
+.cart-item-desc {
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 5px;
+}
+.cart-item-qty {
+  font-size: 12px;
+  color: #444;
+}
+.cart-item-price {
+  font-size: 14px;
+  color: #007bff;
+  min-width: 60px;
+  text-align: right;
+}
+.cart-footer {
+  border-top: 1px solid #ddd;
+  padding-top: 15px;
+}
+.checkout-btn {
+  width: 100%;
+  /* max-width: 230px; */
+  padding: 10px;
+  background: #11203f;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* .popup */
+
+.order-box {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  width: 95%;
+  max-width: 800px;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.order-summary {
+  flex: 1;
+  min-width: 250px;
+  border-left: 2px solid #ccc;
+  padding-left: 20px;
+}
+
+.order-summary h3 {
+  margin-bottom: 10px;
+  color: #11203f;
+}
+
+.summary-product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.summary-product img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.summary-product p {
+  margin: 5px 0;
 }

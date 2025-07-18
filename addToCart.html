@@ -159,9 +159,70 @@
         border-radius: 20px;
         cursor: grab;
       }
+
+      #productContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .product {
+        /* background-color: aqua; */
+        padding: 10px;
+        text-align: center;
+        border-radius: 10px;
+        width: 300px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Only shadow */
+        transition: 0.3s;
+      }
+
+      .product:hover {
+        box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
+        transform: translateY(-5px);
+      }
+
+      #productContainer {
+        margin-bottom: 20px;
+      }
+
+      .product img {
+        width: 100%;
+        height: 300px;
+        margin-bottom: 10px;
+      }
+
+      .btn {
+        width: 100px;
+        height: 30px;
+        border-radius: 20px;
+        background-color: #28447e;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        background-color: #36589b;
+        transition: 0.3s all ease-in-out;
+      }
     </style>
   </head>
   <body>
+    <!-- Slide-in Cart Sidebar -->
+    <div id="cartSidebar">
+      <div class="cart-header">
+        <h2>Your Cart</h2>
+        <span class="close-cart" onclick="closeCart()">&times;</span>
+      </div>
+      <div id="cartItemsList"></div>
+      <div class="cart-footer">
+        <h3 id="cartTotalSidebar">Total: $0.00</h3>
+        <button class="checkout-btn" onclick="checkout()">Checkout</button>
+      </div>
+    </div>
+
     <!-- header-section -->
     <header class="navbar">
       <div class="logo">
@@ -172,7 +233,7 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="women.html">Woman</a></li>
           <li><a href="man.html">Man</a></li>
-          <li><a href="youth.html">Youth</a></li>
+          <li><a href="fashonWeek.html">Discount</a></li>
           <li><a href="community.html">Community</a></li>
           <li><a href="contact.html">Contact US</a></li>
         </ul>
@@ -181,7 +242,11 @@
       <div class="search-cart-user">
         <i class="fa-solid fa-magnifying-glass"></i>
         <input type="text" placeholder="Search" />
-        <i class="fas fa-shopping-bag"></i>
+        <div class="cart-icon" onclick="openCart()">
+          <i class="fa-solid fa-cart-plus" onclick="openCart()"></i>
+          <span id="cartCount">0</span>
+        </div>
+
         <i class="fas fa-user" onclick="openPopup()"></i>
       </div>
 
@@ -209,51 +274,11 @@
         <p id="priceMultiple"></p>
         <br />
         <button class="btn" onclick="popup()">Buy Now</button>
+        <button class="btn" onclick="addToCart()">Add to Cart</button>
       </div>
     </div>
 
-    <!-- product-other-section -->
-    <div class="product-other-section">
-      <h2 class="section-title">Other Products</h2>
-
-      <div class="product-grid">
-        <div class="product-card">
-          <img src="assest/women/4.jpg" alt="Product 1" />
-          <div class="product-content">
-            <div class="product-name">Blouse</div>
-            <div class="product-price">$49.99</div>
-            <button class="buy-btn">Buy Now</button>
-          </div>
-        </div>
-
-        <div class="product-card">
-          <img src="assest/man/7.webp" alt="Product 2" />
-          <div class="product-content">
-            <div class="product-name">Denim Jacket</div>
-            <div class="product-price">$55.00</div>
-            <button class="buy-btn">Buy Now</button>
-          </div>
-        </div>
-
-        <div class="product-card">
-          <img src="assest/youth/7.jfif" alt="Product 3" />
-          <div class="product-content">
-            <div class="product-name">Flannel Shirt</div>
-            <div class="product-price">$35.50</div>
-            <button class="buy-btn">Buy Now</button>
-          </div>
-        </div>
-
-        <div class="product-card">
-          <img src="assest/youth/6.jfif" alt="Product 4" />
-          <div class="product-content">
-            <div class="product-name">Track Suit</div>
-            <div class="product-price">$60.99</div>
-            <button class="buy-btn">Buy Now</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div id="productContainer"></div>
 
     <!-- footer-section -->
     <footer class="footer">
@@ -366,6 +391,90 @@
       </form>
     </div>
 
+    <!-- for other product -->
+    <script>
+      const menProducts = [
+        {
+          id: 1,
+          name: "Tunic",
+          price: "$35",
+          desc: "Comfortable tunic top with ethnic flair.\nPerfect for daily wear or relaxed gatherings.\nMade with breathable rayon fabric.\nGoes well with leggings or jeggings.",
+          img: "assest/women/5.jpg",
+          rating: "★★★★☆ 4.1",
+          sold: "Sold: 90",
+          stock: "Stock: 40",
+        },
+        {
+          id: 2,
+          name: "Henley T-Shirt",
+          price: "$22",
+          desc: "Soft and stretchable Henley with a buttoned neckline.\nIdeal for layering under jackets or wearing solo.\nA versatile piece for both day and night.\nMade from high-quality breathable fabric.",
+          img: "assest/man/2.webp",
+          rating: "★★★★☆ 4.1",
+          sold: "Sold: 95",
+          stock: "Stock: 40",
+        },
+        {
+          id: 3,
+          name: "Crop Top",
+          price: "$25",
+          desc: "A trendy crop top made with soft cotton fabric.\nIdeal for casual outings or beach days.\nAvailable in vibrant summer colors.\nPairs perfectly with high-waisted jeans or skirts.",
+          img: "assest/women/1.jpg",
+          rating: "★★★★☆ 4.3",
+          sold: "Sold: 120",
+          stock: "Stock: 30",
+        },
+        {
+          id: 4,
+          name: "Flannel Shirt",
+          price: "$60",
+          desc: "Warm and soft flannel fabric in a timeless check pattern.\nIdeal for cold days and casual comfort.\nCan be layered over tees.\nDurable and cozy fit.",
+          img: "assest/man/4.jpg",
+          rating: "★★★★★ 4.5",
+          sold: "Sold: 110",
+          stock: "Stock: 15",
+        },
+      ];
+
+      let currentIndex = 0;
+      const perPage = 8;
+
+      function loadMore() {
+        const container = document.getElementById("productContainer");
+
+        for (
+          let i = currentIndex;
+          i < currentIndex + perPage && i < menProducts.length;
+          i++
+        ) {
+          const p = menProducts[i];
+          const div = document.createElement("div");
+          div.className = "product";
+          div.innerHTML = `
+          <img src="${p.img}" alt="${p.name}" />
+          <h3>${p.name}</h3>
+          <p>${p.price}</p>
+          <button class="btn" onclick="buyNow(${p.id})">Buy Now</button>
+        `;
+          container.appendChild(div);
+        }
+
+        currentIndex += perPage;
+        if (currentIndex >= menProducts.length) {
+          document.getElementById("pagination").style.display = "none";
+        }
+      }
+
+      function buyNow(id) {
+        const product = menProducts.find((p) => p.id === id);
+        localStorage.setItem("selectedProduct", JSON.stringify(product));
+        window.location.href = "addToCart.html";
+      }
+
+      loadMore(); // Load first 5 on load
+    </script>
+
+    <!-- for addtocart criteria -->
     <script>
       let p; // Make it global
       const data = localStorage.getItem("selectedProduct");
